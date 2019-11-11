@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import warnings
-warnings.filterwarnings('ignore')
+warnings.filterwarnings("ignore", category=DeprecationWarning)
+warnings.filterwarnings("ignore",category=FutureWarning)
+warnings.filterwarnings("ignore",category=Warning)
 
 import pandas as pd
 import numpy as np
