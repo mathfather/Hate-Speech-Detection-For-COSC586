@@ -26,6 +26,7 @@ from sklearn.svm import SVC
 from sklearn.metrics import f1_score, confusion_matrix
 from sklearn.model_selection import GridSearchCV
 from sklearn.externals import joblib
+from sklearn.metrics import accuracy_score
 
 # Loading data
 
@@ -136,12 +137,14 @@ def classify(train_vectors, train_labels, test_vectors, test_labels, type='LR'):
         print("Loading existing model...")
         classifier = joblib.load(pickled_classifier)
     print("Start predicting...")
-    accuracy = f1_score(train_labels, classifier.predict(train_vectors), average='macro')
-    print("Training f1 score: {}.".format(accuracy))
+    score = f1_score(train_labels, classifier.predict(train_vectors), average='macro')
+    print("Training f1 score: {}.".format(score))
     test_predictions = classifier.predict(test_vectors)
-    accuracy = f1_score(test_labels, test_predictions, average='macro')
-    print("Testing f1 score:", accuracy)
-    print("Confusion Matrix:", )
+    score = f1_score(test_labels, test_predictions, average='macro')
+    print("Testing f1 score:", score)
+    print("Confusion Matrix:")
     print(confusion_matrix(test_labels, test_predictions))
+    print("Overall accuracy:")
+    print(accuracy_score(test_labels, test_predictions))
 
 classify(train_vectors, train_labels, test_vectors, test_labels)

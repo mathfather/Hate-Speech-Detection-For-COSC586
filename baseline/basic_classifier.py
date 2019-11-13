@@ -26,6 +26,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import f1_score, confusion_matrix
 from sklearn.model_selection import GridSearchCV
 from sklearn.externals import joblib
+from sklearn.metrics import accuracy_score
 
 # Loading data
 
@@ -36,8 +37,6 @@ test_data = pd.read_csv(r'./data/join_testset_levelb.csv', header=0)
 train_tweets_levelb = train_data.query("subtask_a == 'OFF'")[["tweet"]]
 train_labels_levelb = train_data.query("subtask_a == 'OFF'")[["subtask_b"]]
 train_tweets_levelb = train_tweets_levelb.assign(tag='train')
-
-train_size = train_tweets_levelb.shape[0]
 
 test_tweets_levelb = test_data[["tweet"]]
 test_labels_levelb = test_data[["subtask_b"]]
@@ -124,12 +123,14 @@ def classify(train_vectors, train_labels, test_vectors, test_labels):
         print("Loading existing model...")
         classifier = joblib.load(pickled_classifier)
     print("Start predicting...")
-    accuracy = f1_score(train_labels, classifier.predict(train_vectors), average='macro')
-    print("Training f1 score: {}.".format(accuracy))
+    score = f1_score(train_labels, classifier.predict(train_vectors), average='macro')
+    print("Training f1 score: {}.".format(score))
     test_predictions = classifier.predict(test_vectors)
-    accuracy = f1_score(test_labels, test_predictions, average='macro')
-    print("Testing f1 score:", accuracy)
+    score = f1_score(test_labels, test_predictions, average='macro')
+    print("Testing f1 score:", score)
     print("Confusion Matrix:", )
     print(confusion_matrix(test_labels, test_predictions))
+    print("Overall accuracy:")
+    print(accuracy_score(test_labels, test_predictions))
 
 classify(train_vectors, train_labels, test_vectors, test_labels)
