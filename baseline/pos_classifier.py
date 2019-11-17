@@ -15,8 +15,6 @@ import nltk
 import re
 import nltk
 from nltk.tokenize import word_tokenize
-from nltk.stem.lancaster import LancasterStemmer
-lancaster_stemmer = LancasterStemmer()
 from nltk.stem import WordNetLemmatizer
 wordnet_lemmatizer = WordNetLemmatizer()
 
@@ -59,11 +57,10 @@ def tokenize(tweet):
     lower_tweet = tweet.lower()
     return word_tokenize(lower_tweet)
 
-def stem_lem(tokens):
+def lemma(tokens):
     clean_tokens = list()
     for token in tokens:
         token = wordnet_lemmatizer.lemmatize(token)
-        token = lancaster_stemmer.stem(token)
         clean_tokens.append(token)
     return clean_tokens
 
@@ -81,8 +78,8 @@ clean_tweets['tokens'] = clean_tweets['tweet'].progress_apply(tokenize)
 tqdm.pandas(desc="Tagging data...")
 clean_tweets['tags'] = clean_tweets['tokens'].progress_apply(partofspeech)
 
-tqdm.pandas(desc="Stemming and lemmatizing...")
-clean_tweets['tokens'] = clean_tweets['tokens'].progress_apply(stem_lem)
+tqdm.pandas(desc="lemmatizing...")
+clean_tweets['tokens'] = clean_tweets['tokens'].progress_apply(lemma)
 
 text_vector = clean_tweets['tokens'].tolist()
 pos_vector = clean_tweets['tags'].tolist()
