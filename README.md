@@ -1,6 +1,6 @@
 # Hate Speech Detection for COSC586
 
-This repository is for the research program Hate Speech Detection assigned by course COSC586:Text Mining from Georgetown University. 
+This repository is for the research program Hate Speech Detection assigned by course **COSC586:Text Mining** from Georgetown University. 
 
 ## Desciption
 
