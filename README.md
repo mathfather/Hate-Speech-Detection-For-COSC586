@@ -1,6 +1,6 @@
 # Hate Speech Detection for COSC586
 
-This repository is for the research program Hate Speech Detection assigned by course [**COSC586:Text Mining**](https://myaccess.georgetown.edu/pls/bninbp/bwckctlg.p_disp_course_detail?cat_term_in=201730&subj_code_in=COSC&crse_numb_in=586) from Georgetown University. Detailed report for this program can be found [here](https://github.com/mathfather/Hate-Speech-Detection-For-COSC586/blob/master/A%20light-weight%20model%20for%20target%20detection%20in%20offensive%20language.pdf).
+This repository is for the research program Hate Speech Detection assigned by course [**COSC586:Text Mining**](https://myaccess.georgetown.edu/pls/bninbp/bwckctlg.p_disp_course_detail?cat_term_in=201730&subj_code_in=COSC&crse_numb_in=586) from Georgetown University. Detailed report for this program(from October 2019 to December 2019) can be found [here](https://github.com/mathfather/Hate-Speech-Detection-For-COSC586/blob/master/A%20light-weight%20model%20for%20target%20detection%20in%20offensive%20language.pdf).
 
 ## Desciption
 
@@ -36,7 +36,7 @@ Ignoring stopwords can boost the performance of our tfidf baseline for around 0.
 
 ### 3. Advanced models with different pre-processing modules 
 
-We have tried different advanced models with different pre-processing modules. For the first step of data cleaning, awaring the problem of previously excluding too much so called noise, we tried another way of data cleaning besides noise_cancelation called noise_replacement. While noise_cancelation directly deletes all the usernames mentioned in text, we reduce duplicate usernames into a single one. The intuition behind is that even though usernames appear in large part of the data, they are still unique in some circumstances and thus shall not be deleted directly. For the tokenizing part, we have tried the normal tokenizer and the tokenizer designed for tweets. Both of the tokenizers are built-in tools within NLTK. For the part-of-speech module, we have tried the spaCy tagger and the NLTK tagger. For the name entity tagger, we choose to use one built by spaCy. A detailed description of pre-processing pipelines for different models as well as their performance is shown below.
+We have tried different advanced models with different pre-processing modules. For the first step of data cleaning, awaring the problem of previously excluding too much so called noise, we tried another way of data cleaning besides noise_cancelation called noise_replacement. While noise_cancelation directly deletes all the usernames mentioned in text, we reduce duplicate usernames into a single one. The intuition behind is that even though usernames appear in large part of the data, they are still unique in some circumstances and thus shall not be deleted directly. For the tokenizing part, we have tried the normal tokenizer and the tokenizer designed for tweets. Both of the tokenizers are built-in tools within NLTK. For the part-of-speech module, we have tried the spaCy tagger and the NLTK tagger. For the name entity tagger, we choose to use one built by spaCy. A detailed description of pre-processing pipelines for different models as well as their performance is shown below. 
 
 |name|regularization|data cleaning|tokenize|part-of-speech|name entity recognition|lemmatization|Macro F1|
 |:--:|:------------:|:-----------:|:------:|:------------:|:---------------------:|:-----------:|:------:|
@@ -45,3 +45,6 @@ We have tried different advanced models with different pre-processing modules. F
 |advanced model(1)| - |replacement|tweet|spaCy| - |lemmatization|0.581|
 |advanced model(2)|l2|cancelation|normal|NLTK|spaCy|lemmatization|0.657|
 |advanced model(3)|l2|replacement|tweet|spaCy|spaCy|lemmatization|**0.679**|
+|Official CNN|-|-|-|-|-|-|0.690|
+|Official BiLSTM|-|-|-|-|-|-|0.660|
+|Official SVM|-|-|-|-|-|-|0.640|
