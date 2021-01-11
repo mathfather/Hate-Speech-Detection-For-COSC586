@@ -12,8 +12,8 @@ This repository is for the research program Hate Speech Detection assigned by co
 
 For this repository, we mainly focus on the sub-task B, namely the automatic categorization of offense. In this task, our goal is to predict the type of offense. Only offensive posts are included. The two categories to be classified in sub-task B are as follow:
 
-- Targeted Insult(TIN): Posts containing an insult/threat to an individual, group, or others
-- Untargeted(UNT): Posts containing nontargeted profanity and swearing. Posts with general profanity are not targeted, but they contain non-acceptable language
+- Targeted Insult (TIN): Posts containing an insult/threat to an individual, group, or others
+- Untargeted (UNT): Posts containing nontargeted profanity and swearing. Posts with general profanity are not targeted, but they contain non-acceptable language
 
 ## Machine learning models
 
